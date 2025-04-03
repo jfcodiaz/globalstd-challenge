@@ -1,0 +1,1 @@
+# GlobalStd Challenge [Front End]
