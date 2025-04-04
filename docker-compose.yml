@@ -1,0 +1,14 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    hostname: ${PROJECT_PREFIX}
+    container_name: ${PROJECT_PREFIX}
+    volumes:
+      - .:/app
+      - ./docker/node/entrypoint.sh:/entrypoint.sh
+    ports:
+      - "${WEB_PORT}:3000"
+    working_dir: /app/code
+    command: bash /entrypoint.sh
