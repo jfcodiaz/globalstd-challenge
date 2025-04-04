@@ -1,0 +1,35 @@
+name: 🚀 Deploy Vue App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🧱 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+
+      - name: 📥 Install dependencies with Yarn
+        run: yarn install --frozen-lockfile
+        working-directory: ./code
+
+      - name: 🛠️ Build project
+        run: yarn build
+        working-directory: ./code
+        env:
+          VITE_APP_BASE: /
+
+      - name: 🚀 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./code/dist
