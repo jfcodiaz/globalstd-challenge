@@ -26,7 +26,30 @@ jobs:
         run: yarn build
         working-directory: ./code
         env:
+          VITE_SECRET_KEY: ${{ secrets.VITE_SECRET_KEY }}
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
           VITE_APP_BASE: /
+
+      - name: 🌐 Add custom domain (CNAME)
+        run: echo 'globalstd-challenge.pakodiaz.dev' > ./code/dist/CNAME
+
+      - name: 🩹 Add SPA 404 fallback
+        run: |
+          cat <<EOF > ./code/dist/404.html
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8" />
+              <script>
+                // Redirect any 404 path to index.html with the full URL preserved
+                window.location.replace('/index.html' + window.location.search + window.location.hash);
+              </script>
+            </head>
+            <body>
+              <p>Redirecting...</p>
+            </body>
+          </html>
+          EOF
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
