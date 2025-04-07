@@ -1,6 +1,6 @@
 services:
   app:
-    build: 
+    build:
       context: .
       dockerfile: ./docker/node/Dockerfile
     hostname: ${PROJECT_PREFIX}
@@ -8,7 +8,10 @@ services:
     volumes:
       - .:/app
       - ./docker/node/entrypoint.sh:/entrypoint.sh
+      - node_modules_volume:/app/code/node_modules
     ports:
       - "${WEB_PORT}:3000"
     working_dir: /app/code
     command: bash /entrypoint.sh
+volumes:
+  node_modules_volume:
