@@ -25,26 +25,24 @@
 <script setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user'
+import { useAuthStore } from '@/stores/auth'
 
-const userStore = useUserStore()
+const authStore = useAuthStore()
 const router = useRouter()
 
 const logout = () => {
-  alert('Logging out...');
-  //userStore.logout()
+  authStore.logout()
   router.push('/login')
 }
-
-const role = computed(() => userStore.role)
 
 const menu = computed(() => {
   const base = [
     { label: 'Dashboard', to: '/dashboard' },
-    { label: 'Usuarios', to: '/users' },
+    authStore.isAdmin ? { label: 'Usuarios', to: '/users' } : null,
     { label: 'Configuración', to: '/configuration' },
     { label: 'Logout', action: logout }
   ]
-  return base
+
+  return base.filter(Boolean)
 })
 </script>
