@@ -1,0 +1,9 @@
+@use './abstracts/variables';
+@use './base/reset';
+@use './base/typography';
+@use './layout/layout';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
