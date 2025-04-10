@@ -1,0 +1,20 @@
+{
+    "name": "GlobalStd Challenge",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+        },
+        "vscode": {
+            "extensions": [
+                "Vue.volar",
+                "DEVSENSE.phptools-vscode",
+                "recca0120.vscode-phpunit",
+                "PKief.material-icon-theme"
+            ]
+        }
+    },
+    "shutdownAction": "none"
+}

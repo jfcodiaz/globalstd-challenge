@@ -9,6 +9,7 @@ services:
       - .:/app
       - ./docker/node/entrypoint.sh:/entrypoint.sh
       - node_modules_volume:/app/code/node_modules
+      - ./docker/node/scripts/welcome.sh:/etc/profile.d/welcome.sh:ro
     ports:
       - "${WEB_PORT}:3000"
     working_dir: /app/code
