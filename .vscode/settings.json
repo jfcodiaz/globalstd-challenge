@@ -18,8 +18,10 @@
         "tab.inactiveForeground": "#A5D6A7",
         "tab.hoverBackground": "#3E7E55",
         "tab.border": "#3E7E55",
-        "editor.background": "#0e191b"
+        "editor.background": "#0e191b",
+        "terminal.background": "#0b1314",
     },
     "explorer.autoReveal": true,
-    "explorer.compactFolders": false
+    "explorer.compactFolders": false,
+    "terminal.integrated.cwd": "/app/code"
 }

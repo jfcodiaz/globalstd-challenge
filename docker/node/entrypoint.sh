@@ -8,5 +8,5 @@ if [ ! -d "node_modules" ] || [ -z "$(ls -A node_modules)" ]; then
 else
     echo "node_modules already exists and is not empty. Skipping dependency installation."
 fi
-
+bash /etc/profile.d/welcome.sh
 yarn run dev & tail -f /dev/null
