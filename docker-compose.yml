@@ -8,6 +8,8 @@ services:
     volumes:
       - .:/app
       - ./docker/node/entrypoint.sh:/entrypoint.sh
+      - ./docker/git/gitconfig:/root/.gitconfig
+      - ./docker/ssh:/root/.ssh
       - node_modules_volume:/app/code/node_modules
       - ./docker/node/scripts/welcome.sh:/etc/profile.d/welcome.sh:ro
     ports:
