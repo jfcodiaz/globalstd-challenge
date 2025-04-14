@@ -27,7 +27,7 @@ cat << "EOF"
   🛑 To stop the dev server:
      👉  $ stop-vite
 
-  🚀 To start the dev server (attached your terminal):
+  🚀 To start the dev server (attaching to your terminal):
      👉  $ start-vite
 
 [ On your loal terminal ]
