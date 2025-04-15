@@ -18,7 +18,7 @@
           required
         />
         <Alert v-if="error" :message="error" type="error" class="mb-4" />
-        <Button>Login</Button>
+        <Button customClass="w-full">Login</Button>
       </form>
     </div>
   </div>

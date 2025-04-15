@@ -25,7 +25,6 @@ export default defineConfig(({ mode }) => {
       hmr: {
         host: activeHost,
         protocol: 'ws',
-        port: 5173
       }
     },
   }

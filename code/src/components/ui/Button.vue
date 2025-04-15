@@ -2,7 +2,7 @@
   <button
     :type="type"
     :class="[
-      'w-full py-2 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition',
+      'bg-[#1676F3] hover:bg-[#0f5fd9] text-white text-sm px-4 py-2 rounded-md',
       customClass
     ]"
     :style="customStyle"
@@ -16,7 +16,7 @@
 defineProps({
   type: {
     type: String,
-    default: 'submit', // también puede ser 'button' o 'reset'
+    default: 'submit',
   },
   customClass: {
     type: [String, Array, Object],

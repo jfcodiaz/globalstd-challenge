@@ -1,7 +1,7 @@
 <template>
   <div class="p-6">
     <h2 class="text-xl font-bold mb-4">Usuarios</h2>
-
+    <UserDialog ref="userDialogRef" @save="onCreateUser" @update="onUpdateUser"/>
     <!-- Filters -->
     <div class="flex items-center justify-between mb-4">
       <div class="flex gap-4">
@@ -85,13 +85,36 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { h, shallowRef, ref, onMounted, watch } from 'vue'
 import dayjs from 'dayjs'
 import api from '@/services/api'
 import Avatar from '../components/ui/Avatar.vue'
+import UserDialog from '../components/dialogs/UserDialog.vue'
+import UserListTopBar from '@/components/topbars/UserListTopBar.vue'
+import { useTopBarStore } from '@/stores/topbar'
 
 const users = ref([])
 const pagination = ref({})
+const userDialogRef = ref(null)
+const topbarStore = useTopBarStore()
+
+topbarStore.content = shallowRef({
+  components: { UserListTopBar },
+  setup() {
+    return () => h(UserListTopBar, { onNew: openDialog })
+  }
+})
+
+const openDialog = () => {
+  userDialogRef.value?.open()
+}
+
+const onUpdateUser = user => {
+  console.log(user)
+}
+const onCreateUser = user => {
+  console.log(user);
+}
 const filters = ref({
   role: '',
   status: '',
