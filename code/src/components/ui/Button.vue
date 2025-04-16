@@ -2,7 +2,9 @@
   <button
     :type="type"
     :class="[
-      'bg-[#1676F3] hover:bg-[#0f5fd9] text-white text-sm px-4 py-2 rounded-md',
+      'bg-primary text-primary-light text-sm px-4 py-2 rounded-md',
+      'hover:bg-primary-hover',
+      'active:bg-primary-active',
       customClass
     ]"
     :style="customStyle"

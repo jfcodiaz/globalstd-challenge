@@ -1,5 +1,12 @@
 <template>
-  <label class="flex items-center gap-2">
+  <label
+    class="
+      flex items-center gap-2 cursor-pointer rounded px-2 py-1
+      transition-all duration-150 ease-in-out
+      hover:bg-primary-light-hover active:bg-blue-100
+      active:bg-primary-light-active
+      disabled:opacity-60 disabled:cursor-not-allowed"
+  >
     <input
       :type="type"
       :value="value"

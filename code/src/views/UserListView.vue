@@ -85,7 +85,7 @@
 </template>
 
 <script setup>
-import { h, shallowRef, ref, onMounted, watch } from 'vue'
+import { ref, watch, onMounted, onUnmounted, h, shallowRef } from 'vue'
 import dayjs from 'dayjs'
 import api from '@/services/api'
 import Avatar from '../components/ui/Avatar.vue'
@@ -95,32 +95,37 @@ import { useTopBarStore } from '@/stores/topbar'
 
 const users = ref([])
 const pagination = ref({})
-const userDialogRef = ref(null)
-const topbarStore = useTopBarStore()
-
-topbarStore.content = shallowRef({
-  components: { UserListTopBar },
-  setup() {
-    return () => h(UserListTopBar, { onNew: openDialog })
-  }
-})
-
-const openDialog = () => {
-  userDialogRef.value?.open()
-}
-
-const onUpdateUser = user => {
-  console.log(user)
-}
-const onCreateUser = user => {
-  console.log(user);
-}
 const filters = ref({
   role: '',
   status: '',
   search: '',
 })
 const currentUrl = ref('/users')
+const userDialogRef = ref(null)
+
+function openDialog() {
+  userDialogRef.value?.open()
+}
+
+function onCreateUser(user) {
+  console.log('Created:', user)
+  fetchUsers()
+}
+
+function onUpdateUser(user) {
+  console.log('Updated:', user)
+  fetchUsers()
+}
+
+function formatDate(date) {
+  return dayjs(date).format('YYYY-MM-DD')
+}
+
+function changePage(fullUrl) {
+  const url = new URL(fullUrl)
+  const relativePath = url.pathname.replace('/api', '') + url.search
+  fetchUsers(relativePath)
+}
 
 async function fetchUsers(url = '/users') {
   try {
@@ -142,21 +147,26 @@ async function fetchUsers(url = '/users') {
   }
 }
 
-function formatDate(date) {
-  return dayjs(date).format('YYYY-MM-DD')
-}
-
-function changePage(fullUrl) {
-  const url = new URL(fullUrl)
-  const relativePath = url.pathname.replace('/api', '') + url.search
-  fetchUsers(relativePath)
-}
-
+// Watch for filter changes
 watch(filters, () => {
   fetchUsers('/users')
 }, { deep: true })
 
+const topbarStore = useTopBarStore()
+
+const topbarComponent = shallowRef({
+  components: { UserListTopBar },
+  setup() {
+    return () => h(UserListTopBar, { onNew: openDialog })
+  }
+})
+
 onMounted(() => {
+  topbarStore.content = topbarComponent
   fetchUsers()
+})
+
+onUnmounted(() => {
+  topbarStore.content = null
 })
 </script>

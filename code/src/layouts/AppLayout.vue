@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex flex-col">
+  <div class="h-screen flex flex-col text-text">
     <div class="flex items-center bg-[#2F3746] text-white h-14 px-6">
       <img src="@/assets/logo.svg" alt="Logo" class="w-5 h-5 mr-2" />
       <span class="font-semibold">GlobalStd Challenge</span>

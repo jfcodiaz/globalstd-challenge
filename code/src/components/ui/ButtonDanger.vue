@@ -1,7 +1,11 @@
 <template>
   <Button
     v-bind="$attrs"
-    customClass="bg-red-600 text-white hover:bg-red-700"
+    customClass="
+      !bg-danger
+      hover:!bg-danger-hover
+      active:!bg-danger-active
+      text-scondary hover:bg-red-700"
     :onClick="onClick"
   >
     <slot />

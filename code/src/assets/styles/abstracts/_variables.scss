@@ -1,1 +1,19 @@
-$primary-color: #4f46e5;
+:root {
+  --color-primary: #1676f3;
+  --color-primary-hover: #0f5fd9;
+  --color-primary-active: #062657;
+  --color-primary-light: #ffffff;
+  --color-primary-light-hover: #eff4ff;
+  --color-primary-light-active: #dbeafe;
+  --color-secondary: #f3f4f6;
+  --color-text: #151516;
+  --color-danger: #ee5151;
+  --color-danger-hover: #eb1717;
+  --color-danger-active: #4b0d0d;
+}
+
+[data-theme="dark"] {
+  --color-primary: #60a5fa;
+  --color-text: #f9fafb;
+  --color-surface: #1e293b;
+}
